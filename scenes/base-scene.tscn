@@ -1,0 +1,116 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1pf15ofd1vgi"]
+
+[ext_resource type="Script" path="res://code/ui/WebSocketBtn.gd" id="1_8c07t"]
+[ext_resource type="Theme" uid="uid://c0xymiaie2h47" path="res://themes/base-scene.tres" id="1_xmpik"]
+[ext_resource type="Script" path="res://code/server/WebSocketServer.gd" id="3_6x5gg"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -2.0
+offset_right = -1.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.789096, 0.980475, 0.956321, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 31.0
+offset_top = 30.0
+offset_right = -28.0
+offset_bottom = 88.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/selection_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/table_odd_row_bg = Color(0, 0, 0, 1)
+theme_override_colors/table_even_row_bg = Color(0, 0, 0, 1)
+theme_override_colors/table_border = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 24
+text = "Mobile App Communication Test"
+
+[node name="ButtonFooter" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = 571.0
+offset_right = -576.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="WSButton" type="Button" parent="ButtonFooter"]
+layout_mode = 2
+text = "Start Web Socket"
+script = ExtResource("1_8c07t")
+
+[node name="ResetButton" type="Button" parent="ButtonFooter"]
+layout_mode = 2
+text = "Reset"
+
+[node name="SendMessageInput" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 158.0
+offset_right = 1116.0
+offset_bottom = 321.0
+theme = ExtResource("1_xmpik")
+
+[node name="ReceivedMessageOutput" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 381.0
+offset_right = 1116.0
+offset_bottom = 544.0
+theme = ExtResource("1_xmpik")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 341.0
+offset_right = 1116.0
+offset_bottom = 381.0
+theme = ExtResource("1_xmpik")
+text = "Received Messages (JSON)"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 116.0
+offset_right = 1116.0
+offset_bottom = 156.0
+theme = ExtResource("1_xmpik")
+text = "Send Message (JSON)"
+
+[node name="SendButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1050.0
+offset_top = 329.0
+offset_right = 1113.0
+offset_bottom = 356.0
+text = "Send"
+
+[node name="WebSocketManager" type="Node2D" parent="."]
+script = ExtResource("3_6x5gg")
+
+[connection signal="toggle_websocket_server" from="ButtonFooter/WSButton" to="WebSocketManager" method="_on_ws_button_toggle_websocket_server"]
